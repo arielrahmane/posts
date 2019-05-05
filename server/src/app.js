@@ -4,7 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const mysql = require('mysql')
 const Sequelize = require('sequelize');
-var Post = require("../models/post");
+const PostModel = require("../models/post");
 
 const app = express()
 app.use(morgan('combined'))
@@ -77,6 +77,8 @@ app.post('/posts', (req, res) => {
 })
 */
 
+const Post = PostModel(sequelize, Sequelize);
+
 app.post('/posts', (req, res) => {
   var db = req.db;
   var title = req.body.title;
@@ -86,13 +88,12 @@ app.post('/posts', (req, res) => {
     description: description
   })
 
-  new_post.save(function (error) {
-    if (error) {
-      console.log(error)
-    }
+  Post.create({
+    new_post
+  }).then(() => {
     res.send({
       success: true,
       message: 'Post saved successfully!'
     })
-  })
+  });
 });
