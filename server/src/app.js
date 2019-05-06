@@ -11,6 +11,12 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
+require('./routes/createPost')(app);
+
+app.listen(process.env.PORT || 8081, "192.168.0.4")
+
+module.exports = app;
+
 /*
 var con = mysql.createConnection({
   host: "localhost",
@@ -34,26 +40,6 @@ app.get('/posts', (req, res) => {
 })
 */
 
-const sequelize = new Sequelize('posts', 'root', 'ariel', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-  sequelize.sync()
-    .then(() => {
-      console.log('Posts db and posts table have been created.');
-    });
-
-app.listen(process.env.PORT || 8081)
 
 /*
 app.post('/posts', (req, res) => {
@@ -76,24 +62,3 @@ app.post('/posts', (req, res) => {
   })
 })
 */
-
-const Post = PostModel(sequelize, Sequelize);
-
-app.post('/posts', (req, res) => {
-  var db = req.db;
-  var title = req.body.title;
-  var description = req.body.description;
-  var new_post = new Post({
-    title: title,
-    description: description
-  })
-
-  Post.create({
-    new_post
-  }).then(() => {
-    res.send({
-      success: true,
-      message: 'Post saved successfully!'
-    })
-  });
-});
