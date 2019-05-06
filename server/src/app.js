@@ -11,7 +11,7 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-require('./routes/createPost')(app);
+require('../routes/createPost')(app);
 
 app.listen(process.env.PORT || 8081, "192.168.0.4")
 

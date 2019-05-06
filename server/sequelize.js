@@ -1,5 +1,5 @@
-import Sequelize from 'sequelize';
-import PostModel from './models/post';
+const Sequelize = require('sequelize');
+const PostModel = require('./models/post');
 
 const sequelize = new Sequelize('posts', 'root', 'ariel', {
   host: 'localhost',
@@ -14,7 +14,7 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
- 
+
 const Post = PostModel(sequelize, Sequelize);
 
 sequelize.sync().then(() => {

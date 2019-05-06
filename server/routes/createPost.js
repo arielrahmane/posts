@@ -1,4 +1,6 @@
-import Post from '../sequelize';
+const Post = require('../sequelize');
+const express = require('express')
+const app = express()
 
 var newPost = app.post('/posts', (req, res) => {
   var db = req.db;
