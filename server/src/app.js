@@ -12,10 +12,19 @@ app.use(bodyParser.json())
 app.use(cors())
 
 require('../routes/createPost')(app);
+require('../routes/getTest')(app);
 
-app.listen(process.env.PORT || 8081, "192.168.0.4")
+app.listen(process.env.PORT || 8081) //, "192.168.0.4")
 
 module.exports = app;
+
+// Request json test
+/*
+{
+  "title": "new post title",
+  "description": "new post description"
+}
+*/
 
 /*
 var con = mysql.createConnection({

@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const Model = Sequelize.Model;
+//const Sequelize = require('sequelize');
+//const Model = Sequelize.Model;
 // var Schema = mongoose.Schema;
 
 /*

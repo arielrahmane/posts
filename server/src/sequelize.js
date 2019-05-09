@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const PostModel = require('./models/post');
+const PostModel = require('../models/post');
 
 const sequelize = new Sequelize('posts', 'root', 'ariel', {
   host: 'localhost',

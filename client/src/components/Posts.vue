@@ -14,6 +14,8 @@
 
 <script>
 import PostsService from '@/services/PostsService'
+import postTest from '@/services/postTest'
+
 export default {
   name: 'posts',
   data () {
@@ -23,11 +25,15 @@ export default {
   },
   mounted () {
     this.getPosts()
+    this.postNewPost()
   },
   methods: {
     async getPosts () {
       const response = await PostsService.fetchPosts()
       this.posts = response.data
+    },
+    async postNewPost () {
+      postTest.postNewPost()
     }
   }
 }
